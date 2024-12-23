@@ -1,0 +1,105 @@
+*themelume.txt*    Plugin for managing Neovim themes with Telescope.
+
+Themelume                                                  *themelume*
+==============================================================================
+
+Themelume is a Neovim plugin that allows users to:
+
+- Select colorschemes using Telescope.
+- Enable or disable transparency for the background.
+- Customize the sorting order of colorschemes.
+
+==============================================================================
+INSTALLATION                                                  *themelume-install*
+
+Using lazy.nvim:
+
+>lua
+return {
+    {
+        "gabref/themelume.nvim",
+        config = function(
+            require('themelume').setup({
+                colorschemes = {
+                    { name = "tokyonight" },
+                    { name = "gruvbox" },
+                    { name = "catppuccin" },
+                },
+                default_colorscheme = "tokyonight",
+                transparency_enabled = true,
+                keymap = "<leader>t",
+            })
+        end
+    }
+}
+>
+
+==============================================================================
+USAGE                                                          *themelume-usage*
+
+To open the colorscheme picker, run:
+
+> :ThemelumePicker
+
+Keybindings:
+- `<CR>`: Apply the selected colorscheme and choose whether to enable transparency.
+- `<C-j>` / `j`: Preview the next colorscheme.
+- `<C-k>` / `k`: Preview the previous colorscheme.
+
+==============================================================================
+CONFIGURATION                                                 *themelume-config*
+
+Setup Themelume in your Neovim configuration with:
+
+>lua
+require('themelume').setup({
+    colorschemes = {
+        { name = "tokyonight" },
+        { name = "gruvbox" },
+        { name = "catppuccin" },
+    },
+    default_colorscheme = "tokyonight",
+    transparency_enabled = true,
+    push_to_bottom = { "rose-pine", "kanagawa-lotus" },
+    keymap = "<leader>t",
+    theme = "dropdown",
+})
+>
+
+Options:
+- `colorschemes`: A list of available colorschemes, each with a `name` field. Could be the same list you use to install your colorschemes. Themelume will load all the lazyloaded themes, otherwise only the available loaded themes will be shown.
+- `default_colorscheme`: The colorscheme to load by default.
+- `transparency_enabled`: Whether transparency is enabled by default and when selecting a theme
+- `push_to_bottom`: Colorschemes you like less to be put at the end of the list.
+- `keymap`: Keybinding to open the picker.
+- `theme`: Telescope theme to use (`ivy`, `dropdown`, or `cursor`).
+
+==============================================================================
+
+FUNCTIONS                                                     *themelume-functions*
+
+>lua
+require('themelume.config')
+>
+- `setup(user_config)`: Sets up Themelume with the given configuration.
+
+>lua
+require('themelume.picker')
+>
+- `ThemelumePicker`: Opens the Telescope picker for colorschemes.
+
+==============================================================================
+DEPENDENCIES                                                *themelume-dependencies*
+
+- `Telescope.nvim`
+- `nvim-transparent` (optional, for advanced transparency management)
+
+==============================================================================
+CREDITS                                                       *themelume-credits*
+
+Created by: gabref
+
+Inspired by Neovim's vibrant plugin ecosystem and the desire for better 
+colorscheme management.
+
+==============================================================================
